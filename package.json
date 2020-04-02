@@ -16,7 +16,8 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start --mode dev.serve",
+    "prod": "react-scripts start --mode prod.serve",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
