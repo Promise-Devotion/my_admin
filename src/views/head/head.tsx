@@ -8,7 +8,7 @@ function Head() {
         <div className="head">
             <div className="lg"></div>
             <span>
-                Edit <code>src/App.js</code> and save to reload.
+                Edit src/App.js and save to reload.
             </span>
       </div>
     )
