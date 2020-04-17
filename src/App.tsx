@@ -1,13 +1,12 @@
 import React from 'react';
 import './App.css';
 import Layout from './views/layout/layout';
-import Head from './views/head/head'
+// import Head from './views/head/head'
 
 
 function App() {
   return (
     <div className="App">
-      <Head></Head>
       <Layout></Layout>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
