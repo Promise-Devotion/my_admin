@@ -1,19 +1,12 @@
 
 import React, { useState, useEffect } from 'react'
 import {
-  AppstoreOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  ShopOutlined,
-  TeamOutlined,
-  UserOutlined,
-  UploadOutlined,
-  VideoCameraOutlined,
   MailOutlined,
-  SettingOutlined
+  UserOutlined
 } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import { Layout, Menu } from 'antd';
+import routers from '../../router/index'
 const { SubMenu } = Menu
 
 
@@ -21,8 +14,10 @@ const { SubMenu } = Menu
 const { Header, Content, Footer, Sider } = Layout;
 
 function SideAndCon() {
-  const [rootSubmenuKeys, setrootSubmenuKeys] = useState(['sub1', 'sub2', 'sub4'])
-  const [openKeys, setopenKeys] = useState(['sub1'])
+  const [rootSubmenuKeys, setrootSubmenuKeys] = useState(routers)
+  const [openKeys, setopenKeys] = useState(['home'])
+
+  console.log(rootSubmenuKeys)
 
   const onOpenChange = (openKeys: any[]) => {
     const latestOpenKey = openKeys.find(key => openKeys.indexOf(key) === -1);
@@ -34,13 +29,9 @@ function SideAndCon() {
       setopenKeys(openKeys)
     }
   };
-  const fetchData = (data: []) => {
-    setTimeout(() => {
-      setrootSubmenuKeys(['sub5', 'sub6', 'sub7'])
-    }, 200);
-  }
   useEffect(() => {
     onOpenChange(openKeys)
+    setrootSubmenuKeys(routers)
   }, [openKeys])
   return (
     <Layout>
@@ -60,50 +51,27 @@ function SideAndCon() {
           onOpenChange={onOpenChange}
           style={{ width: 200 }}
         >
-          <SubMenu
-            key="sub1"
-            title={
-              <span>
-                <MailOutlined />
-                <span>菜单一</span>
-              </span>
-            }
-          >
-            <Menu.Item key="1">Option 1</Menu.Item>
-            <Menu.Item key="2">Option 2</Menu.Item>
-            <Menu.Item key="3">Option 3</Menu.Item>
-            <Menu.Item key="4">Option 4</Menu.Item>
-          </SubMenu>
-          <SubMenu
-            key="sub2"
-            title={
-              <span>
-                <AppstoreOutlined />
-                <span>菜单二</span>
-              </span>
-            }
-          >
-            <Menu.Item key="5">Option 5</Menu.Item>
-            <Menu.Item key="6">Option 6</Menu.Item>
-            <SubMenu key="sub3" title="Submenu">
-              <Menu.Item key="7">Option 7</Menu.Item>
-              <Menu.Item key="8">Option 8</Menu.Item>
-            </SubMenu>
-          </SubMenu>
-          <SubMenu
-            key="sub4"
-            title={
-              <span>
-                <SettingOutlined />
-                <span>菜单三</span>
-              </span>
-            }
-          >
-            <Menu.Item key="9">Option 9</Menu.Item>
-            <Menu.Item key="10">Option 10</Menu.Item>
-            <Menu.Item key="11">Option 11</Menu.Item>
-            <Menu.Item key="12">Option 12</Menu.Item>
-          </SubMenu>
+          {
+            rootSubmenuKeys.map((item: { path: string | number | undefined; title: string | number | undefined; children: Array<[]> | undefined; }) => {
+              return (
+                <SubMenu key={item.path} title={<span>
+                  <MailOutlined />
+                  <span>{item.title}</span>
+                  </span>}>
+                    {
+                      item.children ? item.children.map((pitem: any) => {
+                        return (
+                          <Menu.Item key={pitem.path}>
+                            <UserOutlined />
+                            <span className="nav-text">{pitem.title}</span>
+                          </Menu.Item>
+                        )
+                      }) : ''
+                    }
+                </SubMenu>
+              )
+            })
+          }
         </Menu>
       </Sider>
       <Layout className="site-layout" style={{ marginLeft: 200 }}>
