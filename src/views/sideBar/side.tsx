@@ -7,17 +7,17 @@ import {
 import 'antd/dist/antd.css';
 import { Layout, Menu } from 'antd';
 import routers from '../../router/index'
+import Head from '../head/head'
 const { SubMenu } = Menu
 
 
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 
 function SideAndCon() {
   const [rootSubmenuKeys, setrootSubmenuKeys] = useState(routers)
-  const [openKeys, setopenKeys] = useState(['home'])
+  const [openKeys, setopenKeys] = useState(['article'])
 
-  console.log(rootSubmenuKeys)
 
   const onOpenChange = (openKeys: any[]) => {
     const latestOpenKey = openKeys.find(key => openKeys.indexOf(key) === -1);
@@ -75,7 +75,7 @@ function SideAndCon() {
         </Menu>
       </Sider>
       <Layout className="site-layout" style={{ marginLeft: 200 }}>
-        <Header className="site-layout-background" style={{ padding: 0 }} />
+        <Head />
         <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
           <div className="site-layout-background" style={{ padding: 24, textAlign: 'center' }}>
             ...

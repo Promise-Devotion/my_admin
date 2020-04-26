@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 
 function Home() {
+    const [aa, useaa] = useState(0)
+    console.log(aa)
+    useEffect( () => {
+        useaa(aa)
+    }, [aa])
 
     return (
         <div>

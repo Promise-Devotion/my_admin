@@ -9,7 +9,8 @@ const router: any = [
         component: Loadable({
             loader: () => import('../views/home/home'),
             loading: () => <div />
-        })
+        }),
+        icon: 'HomeOutlined'
     },
     {
         name: 'article',
@@ -19,6 +20,7 @@ const router: any = [
            loading: () => <div />
         }),
         title: '文章',
+        icon: 'FileWordOutlined',
         children: [
             {
                 name: 'book',
@@ -28,6 +30,7 @@ const router: any = [
                 loading: () => <div />
                 }),
                 title: 'book',
+                icon: 'BookOutlined'
             }
         ]
     },
@@ -38,7 +41,8 @@ const router: any = [
             loader: () => import('../views/setting/setting'),
             loading: () => <div />
          }),
-        title: 'setting'
+        title: 'setting',
+        icon: 'SettingOutlined'
     }
 
 ]
