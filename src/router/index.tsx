@@ -42,7 +42,19 @@ const router: any = [
             loading: () => <div />
          }),
         title: 'setting',
-        icon: 'SettingOutlined'
+        icon: 'SettingOutlined',
+        children: [
+            {
+                name: 'set',
+                path: 'set',
+                compoment: Loadable({
+                loader: () => import('../views/setting/set'),
+                loading: () => <div />
+                }),
+                title: 'set',
+                icon: 'BookOutlined'
+            }
+        ]
     }
 
 ]

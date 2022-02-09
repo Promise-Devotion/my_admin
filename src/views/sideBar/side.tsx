@@ -16,23 +16,10 @@ const { Content, Footer, Sider } = Layout;
 
 function SideAndCon() {
   const [rootSubmenuKeys, setrootSubmenuKeys] = useState(routers)
-  const [openKeys, setopenKeys] = useState(['article'])
 
-
-  const onOpenChange = (openKeys: any[]) => {
-    const latestOpenKey = openKeys.find(key => openKeys.indexOf(key) === -1);
-    if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-      setopenKeys(openKeys);
-    } else {
-      const l = latestOpenKey ? [latestOpenKey] : []
-      openKeys = l
-      setopenKeys(openKeys)
-    }
-  };
   useEffect(() => {
-    onOpenChange(openKeys)
-    setrootSubmenuKeys(routers)
-  }, [openKeys])
+    setrootSubmenuKeys(rootSubmenuKeys)
+  }, [rootSubmenuKeys])
   return (
     <Layout>
       <Sider
@@ -47,8 +34,6 @@ function SideAndCon() {
         <Menu
           theme="dark" 
           mode="inline"
-          openKeys={openKeys}
-          onOpenChange={onOpenChange}
           style={{ width: 200 }}
         >
           {
